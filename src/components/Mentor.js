@@ -7,54 +7,28 @@ function Mentor({teacher,setTeacher}) {
   console.log(teacher);
   return <>
   <div className='container'>
-  <Card className="text-center">
-      <Card.Header className='header'>{teacher[0].mentor}</Card.Header>
-      <Card.Body>
-        <Card.Text>Mobile No : {teacher[0].mobileno}</Card.Text>
-        <Card.Text>Email : {teacher[0].mail} </Card.Text>
-        <Card.Text>Expert : {teacher[0].expert} </Card.Text>
-        <div>
-        <Button variant="primary">Edit</Button>
-        &nbsp;
-        &nbsp;
-        <Button variant="danger">Delete</Button>
-        </div>
-      </Card.Body>
-      
-    </Card>
+    {
+      teacher.map((t,i)=>{
+        return <Card className="text-center" key={i}>
+          <Card.Header  className='header'>{t.mentor}</Card.Header>
+          <Card.Body>
+            <Card.Text>Mobile No : {t.mobileno}</Card.Text>
+            <Card.Text>Email : {t.mail}</Card.Text>
+            <Card.Text>Expert : {t.expert}</Card.Text>
+            <Button variant="primary">Edit</Button>
+             &nbsp;
+             &nbsp;
+            <Button variant="danger" onClick={()=>{
+              let newArray = [...teacher]
+              newArray.splice(i,1)
+              setTeacher (newArray)
+            }}>Delete</Button>
+          </Card.Body>
 
-    <Card className="text-center">
-    <Card.Header className='header'>{teacher[1].mentor}</Card.Header>
-      <Card.Body>
-        <Card.Text>Mobile No : {teacher[1].mobileno}</Card.Text>
-        <Card.Text>Email : {teacher[1].mail} </Card.Text>
-        <Card.Text>Expert : {teacher[1].expert} </Card.Text>
-        <div>
-        <Button variant="primary">Edit</Button>
-        &nbsp;
-        &nbsp;
-        <Button variant="danger">Delete</Button>
-        </div>
-      </Card.Body>
-      
-    </Card>
-
-    <Card className="text-center">
-    <Card.Header className='header'>{teacher[2].mentor}</Card.Header>
-      <Card.Body>
-        <Card.Text>Mobile No : {teacher[2].mobileno}</Card.Text>
-        <Card.Text>Email : {teacher[2].mail} </Card.Text>
-        <Card.Text>Expert : {teacher[2].expert} </Card.Text>
-        <div>
-        <Button variant="primary">Edit</Button>
-        &nbsp;
-        &nbsp;
-        <Button variant="danger">Delete</Button>
-        </div>
-      </Card.Body>
-      
-    </Card>
-
+        </Card>
+      })
+    }
+  
   </div>
   </>
 }
